@@ -1,0 +1,118 @@
+/*=================================
+PROGRAM:PEMESANAN MENU MAKANAN RESTAURANT Suzanna.CPP
+NAMA:INDAH SAFITRI
+NIM:23346009
+=================================*/
+
+#include <iostream>
+#include <string.h>
+#include <stdlib.h>
+
+using namespace std;
+
+#define ppn 0.10 // PPN = 10%
+const int diskon = 25000;
+
+int main() {
+    char nama[50], menu[20], back;
+    int jumlah, makanan, makn, total, bayar, kurang, bonus, pajak, kembalian,
+        harga[5] = {25000, 32000, 18000, 20000, 37000}, i = 0;
+
+    do {
+        system("CLS");
+        cout << "==================================suzanna resto=============================" << endl;
+        cout << "================================restaurant bersama==========================" << endl;
+        cout << "========================fast food pasisia rancak || jagonya food============" << endl;
+        cout << endl;
+        cout << "Masukkan Nama Anda : ";
+        cin >> nama;
+        cout << "Pilihan menu yang tersedia..." << endl;
+        cout << "............................................................................" << endl;
+        cout << "|    [1]spacemood platter      =Rp 25.000                                  |" << endl;
+        cout << "|    [2]Truffle Beef Bowl      =Rp 32.000                                  |" << endl;
+        cout << "|    [3]Banana Split           =Rp 18.000                                  |" << endl;
+        cout << "|    [4]Spaghetii Carbonara    =Rp 20.000                                  |" << endl;
+        cout << "|    [5]Spicy Thai Chiken Dinner =Rp 37.000                               |" << endl;
+        cout << "............................................................................" << endl;
+
+        cout << "        (Masukkan Menu Makanan berdasarkan Nomor)" << endl;
+        cout << "Silahkan pilih Makanan anda : ";
+        cin >> makanan;
+
+        switch (makanan) {
+            case 1:
+                strcpy(menu, "spacemood platter");
+                break;
+            case 2:
+                strcpy(menu, "Truffle Beef Bowl");
+                i = 1;
+                break;
+            case 3:
+                strcpy(menu, "Banana Split");
+                i = 2;
+                break;
+            case 4:
+                strcpy(menu, "Spaghetii Carbonara ");
+                i = 3;
+                break;
+            case 5:
+                strcpy(menu, "Spicy Thai Chiken Dinner");
+                i = 4;
+                break;
+            default:
+                cout << "pilihan menu yang anda pilih tidak tersedia..." << endl;
+                goto ulang;
+        }
+
+        cout << " Anda memilih " << menu << endl;
+        cout << endl;
+        cout << "jumlah makanan yang dibeli : ";
+        cin >> jumlah;
+
+        makn = jumlah * harga[i];
+        pajak = makn * ppn;
+        total = pajak + makn;
+        cout << endl;
+        cout << "........................................................................." << endl;
+        cout << "|                          SUZANNA RESTAURANT                          |" << endl;
+        cout << "........................................................................." << endl;
+        cout << "\tNama pemesan            : " << nama << endl;
+        cout << "\tMenu Makanan           : " << menu << endl;
+        cout << "\tJumlah Makanan         : " << jumlah << " porsi" << endl;
+        cout << "\tHarga Makanan          : " << harga[i] << " * " << jumlah << endl;
+        cout << "\tPajak Restaurant       : " << pajak << endl;
+        cout << "\tTotal pembayaran       : Rp " << total << endl;
+
+        if (jumlah >= 4) {
+            bonus = total - diskon;
+            total = bonus;
+            cout << endl;
+            cout << "#......................................................" << endl;
+            cout << "Silahkan bayar disini           :Rp.";
+            cin >> bayar;
+            cout << endl;
+
+            while (bayar < total) {
+                cout << "saldo anda kurang, silahkan bayar lagi : Rp. ";
+                cin >> kurang;
+                bayar += kurang;
+            }
+
+            kembalian = bayar - total;
+            cout << "uang yang anda bayar           : Rp. " << bayar << endl;
+            cout << "uang kembalian                : Rp. " << kembalian << endl;
+            cout << "##########################################################" << endl;
+
+        ulang:
+            cout << "            [y = ya / t = tidak]" << endl;
+            cout << "    apakah anda memesan lagi ? [Y/T] = ";
+            cin >> back;
+        }
+    } while (back == 'Y' || back == 'y');
+
+    cout << endl;
+    cout << "        Terima kasih telah Memesan Makanan di SUZANNA" << endl;
+    cout << "                    Selamat Menikmati" << endl;
+
+    return 0;
+}
